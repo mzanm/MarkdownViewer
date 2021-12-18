@@ -12,7 +12,7 @@ from os import path
 
 import markdown
 
-VER = 1.0
+VER = "1.0.1"
 ERROR = 0x10
 try:
     pathname = str(sys.argv[1]).strip()
@@ -32,7 +32,7 @@ tmpdir = path.normpath(path.expandvars("%temp%"))
 
 def gen_filename():
     name = []
-    charset = list(string.ascii_lowercase + string.digits + ["-", "_"])
+    charset = list(string.ascii_lowercase + string.digits + "-" + "_")
     random.shuffle(charset)
     for i in range(random.randint(16, 24)):
         name.append(random.choice(charset))
