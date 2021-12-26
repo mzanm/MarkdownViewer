@@ -1,5 +1,6 @@
 # MarkdownViewer
 # github.com/mazen428/MarkdownViewer
+# License: GPL V 3.0
 
 
 import ctypes
@@ -12,13 +13,13 @@ from os import path
 
 import markdown
 
-VER = "1.0.1"
+VER = "1.0.2"
 ERROR = 0x10
-try:
-    pathname = str(sys.argv[1]).strip()
-except IndexError:
+pathname = str(" ".join(sys.argv[1:])).strip()
+if not pathname:
     ctypes.windll.user32.MessageBoxW(None, "No path provided.", "Error", ERROR)
     sys.exit()
+
 if not path.exists(pathname):
     ctypes.windll.user32.MessageBoxW(
         None,
@@ -51,7 +52,7 @@ def writefile(filepath, data):
     return True
 
 
-if path.getsize(pathname) > 5242880: # 5 megabytes
+if path.getsize(pathname) > 5242880:  # 5 megabytes
     ctypes.windll.user32.MessageBoxW(None, "The file is too large.", "Error", ERROR)
     sys.exit()
 
